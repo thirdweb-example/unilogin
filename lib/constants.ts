@@ -1,17 +1,23 @@
-import { Goerli } from "@thirdweb-dev/chains";
+import { Goerli, BaseGoerli } from "@thirdweb-dev/chains";
 
 export const THIRDWEB_API_KEY = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID;
 
-export const DEV_CAT_CONTRACT_GOERLI =
-  "0xf91E0ffA115F8390aE1DE0801A847924Df8ad282";
-
-export const factoryAddress = "0xF8631a71b51129453fb70057aAcA80d4c2f0929F";
 export const chain = Goerli;
 
-export const gatewayUrl = "https://ipfs.io/ipfs/";
+const chainInfos = {
+  [Goerli.chainId]: {
+    factoryAddress: "0xF8631a71b51129453fb70057aAcA80d4c2f0929F",
+    openEditionContract: "0xf91E0ffA115F8390aE1DE0801A847924Df8ad282",
+  },
+  [BaseGoerli.chainId]: {
+    factoryAddress: "0x2637758c0777d58E3278A6022730e997A83d04bF",
+    openEditionContract: "0x2C967b92440530ce704BDc700efe7982e52F4F9F",
+  },
+};
 
-export const username = "test3";
-export const pwd = "123";
+export const DEV_CAT_CONTRACT = chainInfos[chain.chainId].openEditionContract;
+export const factoryAddress = chainInfos[chain.chainId].factoryAddress;
+export const gatewayUrl = "https://ipfs.io/ipfs/";
 
 export const ACCOUNT_ABI = [
   {

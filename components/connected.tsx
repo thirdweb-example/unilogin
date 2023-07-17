@@ -10,7 +10,7 @@ import {
   useTransferNFT,
 } from "@thirdweb-dev/react";
 import { Signer } from "ethers";
-import { DEV_CAT_CONTRACT_GOERLI, chain } from "../lib/constants";
+import { DEV_CAT_CONTRACT, chain } from "../lib/constants";
 import styles from "../styles/Home.module.css";
 import { shortenIfAddress } from "../lib/addresses";
 import { Blocks } from "react-loader-spinner";
@@ -32,7 +32,7 @@ export const Connected = ({
 
 const ConnectedInner = ({ username }: { username: string }) => {
   const address = useAddress();
-  const { contract } = useContract(DEV_CAT_CONTRACT_GOERLI);
+  const { contract } = useContract(DEV_CAT_CONTRACT);
   const { mutate: claim, isLoading: claimLoading } = useClaimNFT(contract);
   const { mutate: transfer, isLoading: transferLoading } =
     useTransferNFT(contract);
@@ -110,6 +110,7 @@ const ConnectedInner = ({ username }: { username: string }) => {
                     },
                     {
                       onSuccess: async () => {
+                        alert("Transfer successful");
                         // wait for 1 sec before refetching
                         await new Promise((resolve) =>
                           setTimeout(resolve, 1000)
@@ -137,6 +138,7 @@ const ConnectedInner = ({ username }: { username: string }) => {
                   },
                   {
                     onSuccess: async () => {
+                      alert("Claim successful");
                       // wait for 1 sec before refetching
                       await new Promise((resolve) => setTimeout(resolve, 1000));
                       await refetch();
@@ -169,10 +171,8 @@ const TotalClaimed = ({
       </p>
       <p className={styles.label} style={{ color: "#999", marginTop: "5px" }}>
         Contract:{" "}
-        <a
-          href={`https://thirdweb.com/${chain.slug}/${DEV_CAT_CONTRACT_GOERLI}`}
-        >
-          {shortenIfAddress(DEV_CAT_CONTRACT_GOERLI)}
+        <a href={`https://thirdweb.com/${chain.slug}/${DEV_CAT_CONTRACT}`}>
+          {shortenIfAddress(DEV_CAT_CONTRACT)}
         </a>
       </p>
     </div>
