@@ -50,9 +50,7 @@ export async function connectToSmartWallet(
   );
 
   const smartWallet = createSmartWallet();
-  const personalWallet = new LocalWallet({
-    chain: chain,
-  });
+  const personalWallet = new LocalWallet();
 
   if (isDeployed) {
     statusCallback?.("Username exists, accessing onchain data...");
@@ -104,7 +102,7 @@ export async function connectToSmartWallet(
       encryptedWallet,
     });
 
-    statusCallback?.("Deploying & registering username onchain...");
+    statusCallback?.(`Deploying & registering username onchain...`);
     await smartWallet.execute(
       await Transaction.fromContractInfo({
         contractAddress: await smartWallet.getAddress(),

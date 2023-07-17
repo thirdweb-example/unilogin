@@ -50,7 +50,7 @@ const ConnectedInner = ({ username }: { username: string }) => {
       </h1>
       <hr className={styles.divider} />
       <p className={styles.label}>
-        Your address is{" "}
+        Smart Wallet Address:{" "}
         <a
           href={`https://thirdweb.com/${chain.slug}/${address}`}
           target="_blank"

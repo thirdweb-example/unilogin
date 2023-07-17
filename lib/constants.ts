@@ -2,7 +2,7 @@ import { Goerli, BaseGoerli } from "@thirdweb-dev/chains";
 
 export const THIRDWEB_API_KEY = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID;
 
-export const chain = Goerli;
+export const chain = BaseGoerli;
 
 const chainInfos = {
   [Goerli.chainId]: {

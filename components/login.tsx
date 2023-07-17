@@ -45,7 +45,9 @@ export const Login = () => {
         wrapperStyle={{}}
         wrapperClass="blocks-wrapper"
       />
-      <p className={styles.label}>{loadingStatus}</p>
+      <p className={styles.label} style={{ textAlign: "center" }}>
+        {loadingStatus}
+      </p>
     </div>
   ) : error ? (
     <div className={styles.filler}>
