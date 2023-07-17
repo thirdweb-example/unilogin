@@ -109,7 +109,13 @@ const ConnectedInner = ({ username }: { username: string }) => {
                       tokenId: ownedNFTs[0].metadata.id,
                     },
                     {
-                      onSuccess: () => refetch,
+                      onSuccess: async () => {
+                        // wait for 1 sec before refetching
+                        await new Promise((resolve) =>
+                          setTimeout(resolve, 1000)
+                        );
+                        await refetch();
+                      },
                       onError: (err) => alert((err as any).reason || err),
                     }
                   )
@@ -130,7 +136,11 @@ const ConnectedInner = ({ username }: { username: string }) => {
                     quantity: 1,
                   },
                   {
-                    onSuccess: () => refetch,
+                    onSuccess: async () => {
+                      // wait for 1 sec before refetching
+                      await new Promise((resolve) => setTimeout(resolve, 1000));
+                      await refetch();
+                    },
                     onError: (err) => alert((err as any).reason || err),
                   }
                 )

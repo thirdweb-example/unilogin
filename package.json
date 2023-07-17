@@ -11,9 +11,9 @@
     "deploy": "next build && next export && npx thirdweb@latest upload out"
   },
   "dependencies": {
-    "@thirdweb-dev/react": "^3",
-    "@thirdweb-dev/sdk": "^3",
-    "@thirdweb-dev/wallets": "^1.0.11",
+    "@thirdweb-dev/react": "^3.14.16-nightly-dac8fa7d-20230715222158",
+    "@thirdweb-dev/sdk": "^3.10.36-nightly-dac8fa7d-20230715222158",
+    "@thirdweb-dev/wallets": "^1.0.12-nightly-dac8fa7d-20230715222158",
     "ethers": "^5",
     "next": "^13",
     "react": "^18.2",
