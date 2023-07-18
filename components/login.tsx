@@ -51,7 +51,9 @@ export const Login = () => {
     </div>
   ) : error ? (
     <div className={styles.filler}>
-      <p className={styles.label}>❌ {error}</p>
+      <p className={styles.label} style={{ textAlign: "center" }}>
+        ❌ {error}
+      </p>
       <button className={styles.button} onClick={() => setError("")}>
         Try again
       </button>
