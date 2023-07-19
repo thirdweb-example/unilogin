@@ -143,7 +143,13 @@ const ConnectedInner = ({ username }: { username: string }) => {
                       await new Promise((resolve) => setTimeout(resolve, 1000));
                       await refetch();
                     },
-                    onError: (err) => alert((err as any).reason || err),
+                    onError: (err) => {
+                      let reason = (err as any).reason || err;
+                      if (reason == "!Qty") {
+                        reason = "Already claimed max number of DevCats!";
+                      }
+                      alert(reason);
+                    },
                   }
                 )
               }
@@ -171,7 +177,10 @@ const TotalClaimed = ({
       </p>
       <p className={styles.label} style={{ color: "#999", marginTop: "5px" }}>
         Contract:{" "}
-        <a href={`https://thirdweb.com/${chain.slug}/${DEV_CAT_CONTRACT}`}>
+        <a
+          href={`https://thirdweb.com/${chain.slug}/${DEV_CAT_CONTRACT}`}
+          target="_blank"
+        >
           {shortenIfAddress(DEV_CAT_CONTRACT)}
         </a>
       </p>
