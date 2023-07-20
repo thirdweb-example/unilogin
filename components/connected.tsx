@@ -84,6 +84,15 @@ const ConnectedInner = ({ username }: { username: string }) => {
             <p className={styles.description} style={{ fontWeight: "bold" }}>
               ethCC DevCat #{ownedNFTs[0].metadata.id}
             </p>
+            <p style={{ color: "#999" }}>
+              view on{" "}
+              <a
+                href={`https://testnets.opensea.io/assets/base-goerli/${DEV_CAT_CONTRACT}/${ownedNFTs[0].metadata.id}`}
+                target="_blank"
+              >
+                OpenSea
+              </a>
+            </p>
 
             <hr className={styles.divider} />
             <div className={styles.row_center} style={{ width: "100%" }}>
