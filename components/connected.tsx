@@ -7,6 +7,7 @@ import {
   useClaimedNFTSupply,
   useContract,
   useOwnedNFTs,
+  useTotalCirculatingSupply,
   useTransferNFT,
 } from "@thirdweb-dev/react";
 import { Signer } from "ethers";
@@ -80,14 +81,16 @@ const ConnectedInner = ({ username }: { username: string }) => {
         ) : ownedNFTs && ownedNFTs.length > 0 ? (
           <>
             <ThirdwebNftMedia metadata={ownedNFTs[0].metadata} />
-            <p>You own</p>
+            <p>You own {ownedNFTs[0].quantityOwned}</p>
             <p className={styles.description} style={{ fontWeight: "bold" }}>
-              ethCC DevCat #{ownedNFTs[0].metadata.id}
+              ethCC DevCat
             </p>
             <p style={{ color: "#999" }}>
               view on{" "}
               <a
-                href={`https://testnets.opensea.io/assets/base-goerli/${DEV_CAT_CONTRACT}/${ownedNFTs[0].metadata.id}`}
+                href={`https://testnets.opensea.io/assets/base-goerli/${DEV_CAT_CONTRACT.toLowerCase()}/${
+                  ownedNFTs[0].metadata.id
+                }`}
                 target="_blank"
               >
                 OpenSea
@@ -116,6 +119,7 @@ const ConnectedInner = ({ username }: { username: string }) => {
                     {
                       to: transferTo,
                       tokenId: ownedNFTs[0].metadata.id,
+                      amount: 1,
                     },
                     {
                       onSuccess: async () => {
@@ -144,6 +148,7 @@ const ConnectedInner = ({ username }: { username: string }) => {
                 claim(
                   {
                     quantity: 1,
+                    tokenId: 0,
                   },
                   {
                     onSuccess: async () => {
@@ -178,7 +183,7 @@ const TotalClaimed = ({
 }: {
   contract: SmartContract | undefined;
 }) => {
-  const { data: totalClaimed } = useClaimedNFTSupply(contract);
+  const { data: totalClaimed } = useTotalCirculatingSupply(contract, 0);
   return (
     <div className={styles.column_center} style={{ marginBottom: "2rem" }}>
       <p style={{ color: "#999" }}>

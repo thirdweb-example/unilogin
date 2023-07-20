@@ -11,7 +11,7 @@ const chainInfos = {
   },
   [BaseGoerli.chainId]: {
     factoryAddress: "0x2637758c0777d58E3278A6022730e997A83d04bF",
-    openEditionContract: "0x2C967b92440530ce704BDc700efe7982e52F4F9F",
+    openEditionContract: "0x4EFe47576E48cC383805A9E8FC3e02Ddb1a5D535",
   },
 };
 
