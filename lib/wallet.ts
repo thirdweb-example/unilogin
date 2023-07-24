@@ -43,7 +43,6 @@ export async function connectToSmartWallet(
     gatewayUrls: [gatewayUrl],
   });
   const smartWalletAddress = await getWalletAddressForUser(sdk, username);
-  console.log("Smart wallet address", smartWalletAddress);
   const isDeployed = await isContractDeployed(
     smartWalletAddress,
     sdk.getProvider()
@@ -55,7 +54,6 @@ export async function connectToSmartWallet(
   if (isDeployed) {
     statusCallback?.("Username exists, accessing onchain data...");
     // CASE 2 - existing wallet - fetch metadata, decrypt, load local wallet, connect
-    console.log("Wallet is deployed");
     // download encrypted wallet from IPFS
     const contract = await sdk.getContract(smartWalletAddress);
     const metadata = await contract.metadata.get();
@@ -71,7 +69,6 @@ export async function connectToSmartWallet(
       encryptedJson: encryptedWallet,
       password: pwd,
     });
-    console.log("Wallet imported");
 
     statusCallback?.("Connecting...");
     await smartWallet.connect({
@@ -80,10 +77,9 @@ export async function connectToSmartWallet(
   } else {
     statusCallback?.("New username, generating personal wallet...");
     // CASE 1 - fresh start - create local wallet, encrypt, connect, call register on account with username + metadata
-    console.log("Wallet is not deployed");
     // generate local wallet
-    await personalWallet.deleteSaved();
     await personalWallet.generate();
+    // encrypt it
     const encryptedWallet = await personalWallet.export({
       strategy: "encryptedJson",
       password: pwd,
@@ -96,13 +92,13 @@ export async function connectToSmartWallet(
     // register account
     // upload encrypted wallet to IPFS
     statusCallback?.("Uploading encrypted wallet to IPFS...");
-    console.log("Uploading encrypted wallet to IPFS");
     const encryptedWalletUri = await sdk.storage.upload({
       name: username,
       encryptedWallet,
     });
 
     statusCallback?.(`Deploying & registering username onchain...`);
+    // this will deploy the smart wallet and register the username
     await smartWallet.execute(
       await Transaction.fromContractInfo({
         contractAddress: await smartWallet.getAddress(),
@@ -113,7 +109,6 @@ export async function connectToSmartWallet(
         args: [username, encryptedWalletUri],
       })
     );
-    console.log("Account registered");
   }
 
   return smartWallet;
