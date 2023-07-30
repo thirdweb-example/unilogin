@@ -4,7 +4,6 @@ import {
   THIRDWEB_API_KEY,
   chain,
   factoryAddress,
-  gatewayUrl,
 } from "./constants";
 import {
   ThirdwebSDK,
@@ -17,7 +16,7 @@ export function createSmartWallet(): SmartWallet {
     chain: chain,
     factoryAddress: factoryAddress,
     gasless: true,
-    thirdwebApiKey: THIRDWEB_API_KEY || "",
+    clientId: THIRDWEB_API_KEY || "",
   });
   return smartWallet;
 }
@@ -40,7 +39,7 @@ export async function connectToSmartWallet(
 ): Promise<SmartWallet> {
   statusCallback?.("Checking username...");
   const sdk = new ThirdwebSDK(chain, {
-    gatewayUrls: [gatewayUrl],
+    clientId: THIRDWEB_API_KEY || "",
   });
   const smartWalletAddress = await getWalletAddressForUser(sdk, username);
   const isDeployed = await isContractDeployed(
@@ -107,6 +106,7 @@ export async function connectToSmartWallet(
         signer: await personalWallet.getSigner(),
         method: "register",
         args: [username, encryptedWalletUri],
+        storage: sdk.storage,
       })
     );
   }

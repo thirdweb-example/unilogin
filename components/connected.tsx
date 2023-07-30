@@ -11,7 +11,7 @@ import {
   useTransferNFT,
 } from "@thirdweb-dev/react";
 import { Signer } from "ethers";
-import { DEV_CAT_CONTRACT, chain } from "../lib/constants";
+import { DEV_CAT_CONTRACT, THIRDWEB_API_KEY, chain } from "../lib/constants";
 import styles from "../styles/Home.module.css";
 import { shortenIfAddress } from "../lib/addresses";
 import { Blocks } from "react-loader-spinner";
@@ -25,7 +25,11 @@ export const Connected = ({
   signer: Signer;
 }) => {
   return (
-    <ThirdwebSDKProvider signer={signer} activeChain={chain}>
+    <ThirdwebSDKProvider
+      signer={signer}
+      activeChain={chain}
+      clientId={THIRDWEB_API_KEY || ""}
+    >
       <ConnectedInner username={username} />
     </ThirdwebSDKProvider>
   );

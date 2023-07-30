@@ -17,7 +17,6 @@ const chainInfos = {
 
 export const DEV_CAT_CONTRACT = chainInfos[chain.chainId].openEditionContract;
 export const factoryAddress = chainInfos[chain.chainId].factoryAddress;
-export const gatewayUrl = "https://ipfs.io/ipfs/";
 
 export const ACCOUNT_ABI = [
   {
