@@ -5,11 +5,12 @@ import styles from "../styles/Home.module.css";
 import { Blocks } from "react-loader-spinner";
 import { Connected } from "./connected";
 import { Footer } from "./footer";
+import { Signer } from "ethers";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [signer, setSigner] = useState<any>(null);
+  const [signer, setSigner] = useState<Signer | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingStatus, setLoadingStatus] = useState("");
   const [error, setError] = useState("");

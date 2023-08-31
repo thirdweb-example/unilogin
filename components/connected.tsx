@@ -4,7 +4,6 @@ import {
   ThirdwebSDKProvider,
   useAddress,
   useClaimNFT,
-  useClaimedNFTSupply,
   useContract,
   useOwnedNFTs,
   useTotalCirculatingSupply,

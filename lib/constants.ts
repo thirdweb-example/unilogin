@@ -13,7 +13,7 @@ const chainInfos = {
     factoryAddress: "0x2637758c0777d58E3278A6022730e997A83d04bF",
     openEditionContract: "0x4EFe47576E48cC383805A9E8FC3e02Ddb1a5D535",
   },
-};
+} as const;
 
 export const DEV_CAT_CONTRACT = chainInfos[chain.chainId].openEditionContract;
 export const factoryAddress = chainInfos[chain.chainId].factoryAddress;
