@@ -1,24 +1,30 @@
-# Log in to Ethereum with username / password
+# Decentralized Ethereum Login System
 
-This is a ERC-4337 experiment that shows how to connect to a smart account using only a username and password.
+This is a ERC-4337 experiment that shows how to connect to a smart account using only a username and password, fully onchain, with no centralized infrastructure.
 
-Only requires a bundler/paymaster for user operations and an IPFS gateway. Can be used with the provider of your choice, from any device, on any domain. No walled gardens or centralized infrastructure.
+Only requires:
+
+- RPC provider of your choice
+- Bundler/paymaster provider of your choice
+- IPFS gateway of your choice (this could be replaced with pure onchain storage)
+
+Anyone can build a frontend for this, and users can connect from any device, on any domain. No walled gardens or centralized infrastructure.
 
 Solves most of the UX issues:
 
-- Accessible from any platform - web, native apps, etc
+- Accessible from any platform - web, native apps, games, etc
 - No domain restrictions, can be used on any domain
-- Syncs to any device, all data lives onchain and on IPFS
+- Syncs to any device, all data lives onchain and on IPFS and cannot be censored
 - No pop up or mobile app redirects, all signatures happen under the hood
-- Every account comes with a easy to remember username
+- Every account comes with a username, no need to remember another long address
 
 ## Live Demo
 
-[https://ethlogin.thirdweb-preview.com/](https://ethlogin.thirdweb-preview.com/)
+Try it out at [https://ethlogin.thirdweb-preview.com/](https://ethlogin.thirdweb-preview.com/)
 
 ## How it works
 
-- Account factory acts as a registry for usernames
+- Account factory smart contract acts as a registry for usernames (lookup username -> get account address)
 - Private keys are generated client side, encrypted and stored on IPFS
 - Account contract stores the IPFS hash of the encrypted private key + metadata like the username
 

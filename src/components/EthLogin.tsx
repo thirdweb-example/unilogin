@@ -107,6 +107,10 @@ export default function EthLogin() {
           Login
         </button>
       </form>
+      <div className="text-sm text-gray-500 text-center mt-4">
+        Login to ethereum with no centralized infrastructure involved. 100%
+        onchain and censorship resistant.
+      </div>
     </div>
   );
 }
